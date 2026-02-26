@@ -116,7 +116,9 @@ This prevents session token overflow — the #1 cause of agent going unresponsiv
 
 ### Step 9: Set up shared knowledge base (optional)
 
-Create a shared directory accessible by all agents:
+If your agents already share a project directory (e.g. all agents access `~/.openclaw/workspace/projects/`), you can skip this step.
+
+Otherwise, create a shared directory with symlinks so each agent can access it from their own workspace:
 
 ```bash
 mkdir -p ~/.openclaw/workspace/shared
