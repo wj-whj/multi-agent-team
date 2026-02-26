@@ -57,9 +57,12 @@ Templates for each agent's workspace files. Customize per deployment.
 
 ### 健康自愈
 
-- 定期检查团队 session 状态（cron 自动执行）
-- 发现 token 占用 >85% 时在群里提醒对应 agent
-- 发现 token 占用 >95% 时告警并建议人工介入
+- 定期检查团队 session 状态（cron 每 30 分钟自动执行）
+- 70-85% token 占用：群里提醒 agent
+- 85-95%：自动重置 session（/new）
+- >95%：自动重置 + 通知人类
+- agent 无响应时：清理 session 文件 + 重启 gateway
+- 所有恢复操作后验证结果
 - 健康日志记录在 `memory/health-log.md`
 
 ### 冲突解决
