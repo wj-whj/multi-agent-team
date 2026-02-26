@@ -94,6 +94,37 @@ These are hard-won lessons. Do NOT skip:
 6. **model.primary format** — Use `provider/model-id` format (e.g. `wj-1/claude-opus-4-6`)
 7. **model as object** — In agents.list, model must be `{ "primary": "...", "fallbacks": [...] }`, not a plain string
 8. **Bot user ID vs Application ID** — The guild users list needs the bot's USER ID (visible when the bot joins the server), not the Application ID from the developer portal
+9. **Context window matters** — Use 200k ctx models (e.g. sonnet-4-5) for Dev/Ops; 128k models hit limits fast in long sessions
+10. **Session token overflow** — The #1 cause of agent going unresponsive. Set up health monitor cron (see references/health-monitor.md) and proactively /new before hitting limits
+
+## Step 7: Set up task tracking (recommended)
+
+Create task tracking structure in Boss workspace:
+
+```bash
+mkdir -p ~/.openclaw/workspace/tasks/active
+mkdir -p ~/.openclaw/workspace/tasks/done
+```
+
+Create `tasks/BOARD.md` as the task dashboard. Read `references/task-tracking.md` for format and workflow.
+
+### Step 8: Set up health monitor (recommended)
+
+Create a cron job for Boss to periodically check team session health. Read `references/health-monitor.md` for the cron template.
+
+This prevents session token overflow — the #1 cause of agent going unresponsive.
+
+### Step 9: Set up shared knowledge base (optional)
+
+Create a shared directory accessible by all agents:
+
+```bash
+mkdir -p ~/.openclaw/workspace/shared
+ln -s ~/.openclaw/workspace/shared ~/.openclaw/workspace-dev/shared
+ln -s ~/.openclaw/workspace/shared ~/.openclaw/workspace-ops/shared
+```
+
+Use `shared/` for project docs, API specs, architecture decisions, and anything all agents need to reference.
 
 ## Extending the Team
 

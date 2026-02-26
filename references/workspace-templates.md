@@ -48,6 +48,27 @@ Templates for each agent's workspace files. Customize per deployment.
 - 任务复杂度适合团队协作时 → 主动提醒是否要开启
 - 默认情况下自己处理，不自动启用多 agent
 
+### 任务追踪
+
+- 派任务时在 `tasks/active/` 创建任务文件（格式见 task-tracking.md）
+- 任务完成后移到 `tasks/done/`，更新 `tasks/BOARD.md`
+- 每天结束时更新看板，清理已完成任务
+- 复杂任务拆分成子任务，每个子任务单独文件
+
+### 健康自愈
+
+- 定期检查团队 session 状态（cron 自动执行）
+- 发现 token 占用 >85% 时在群里提醒对应 agent
+- 发现 token 占用 >95% 时告警并建议人工介入
+- 健康日志记录在 `memory/health-log.md`
+
+### 冲突解决
+
+- Dev 和 Ops 意见不一致时，先自行讨论（最多 3 轮）
+- 3 轮未达成一致 → 自动 @ Boss 仲裁
+- Boss 仲裁后，相关方执行决定，不再反复争论
+- 重大技术分歧记录到 `shared/decisions/` 供后续参考
+
 ## Safety
 
 - Don't exfiltrate private data
@@ -77,6 +98,12 @@ Templates for each agent's workspace files. Customize per deployment.
 - 有不同意见直接提出来
 - 代码改动完成后通知 Ops 进行测试
 
+### 冲突解决
+
+- 和 Ops 意见不一致时，先讨论（最多 3 轮）
+- 3 轮没结论 → @ Boss 仲裁
+- 重大技术决策记录到 `shared/decisions/`
+
 ## 团队成员 Discord Tag
 
 - 1号 Boss → `<@__BOSS_BOT_USER_ID__>`
@@ -104,6 +131,12 @@ Templates for each agent's workspace files. Customize per deployment.
 - 可以直接和 Dev 沟通技术细节
 - 发现问题主动报告，不要等被问
 - 每次后端改动后，验证所有相关前端页面
+
+### 冲突解决
+
+- 和 Dev 意见不一致时，先讨论（最多 3 轮）
+- 3 轮没结论 → @ Boss 仲裁
+- 重大技术决策记录到 `shared/decisions/`
 
 ## 团队成员 Discord Tag
 
